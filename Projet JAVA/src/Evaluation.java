@@ -12,7 +12,17 @@ public class Evaluation {
         this.matiere= matiere;
         this.note=note;
     }
+    public double getNote()
+	{
+		return note;
+	}
 
+	public void setId()
+	{
+		this.note = note;
+    }
+
+    
     @Override // Décris un élève
     public String toString()
     {
