@@ -7,14 +7,6 @@ public class Eleve extends NomPrenom {
     Evaluation evaluation;
     private static final int NB_EVALUATIONS = 10;
 
-
-
-
-
-    public void setId(int id){
-        this.id = id;
-    }
-
     //Constructeur d'initialisation
     public Eleve(String prenom, String nom, int jour, int mois, int annee)
     {
@@ -32,6 +24,14 @@ public class Eleve extends NomPrenom {
     public void setId(){
         this.id=id;
     }
+    
+    public double mediane(Evaluation evaluation)
+	{
+		double note;
+		note = evaluation.getNote();
+		System.out.println(note);
+		return note;
+	}
 
     @Override // Décris un élève
     public String toString()
