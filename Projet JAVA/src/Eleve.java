@@ -88,16 +88,19 @@ public class Eleve extends NomPrenom
     @Override // Décris un élève
     public String toString()
     {
-    	StringBuilder notes = new StringBuilder();
-        for(Evaluation eval : evaluations){
-            notes.append(eval.getMatiere()).append(" ").append(eval.getNote()).append(" ");
+        try {
+            StringBuilder notes = new StringBuilder();
+            for(Evaluation eval : evaluations)
+            {
+                notes.append(eval.getMatiere()).append(" ").append(eval.getNote()).append(" ");
+            }
+            if (promotion == null) {
+                return "\n" + super.toString() + " Id : " + this.getId() + "\nNotes : " + notes + "\nMoyenne = " + moyenne() + "\nMediane = " + mediane() + "\nCorrecteur(s): " + getCorrecteurs();
+            }
+            return "\n" + super.toString() + " Id : " + this.getId() + "\nPromotion: " + this.promotion.getNom() + "\nNotes : " + notes +  "\nMoyenne = " + moyenne() + "\nMediane = " + mediane() + "\nCorrecteur(s): " + getCorrecteurs();
+        } catch(IllegalStateException e) {
+            return "";
         }
-        if (promotion == null) {
-	        return "\n" + super.toString() + " Id : " + this.getId() + "\nNotes : " + notes + "\nMoyenne = " + moyenne() + "\nMediane = " 
-	        + mediane() + "\nCorrecteur(s): " + getCorrecteurs();
-        }
-        return "\n" + super.toString() + " Id : " + this.getId() + "\nPromotion: " + this.promotion.getNom() + "\nNotes : " + notes + 
-        		"\nMoyenne = " + moyenne() + "\nMediane = " + mediane() + "\nCorrecteur(s): " + getCorrecteurs();
     }
     
     //Hashcode et equals
@@ -119,6 +122,4 @@ public class Eleve extends NomPrenom
         }
         return false;
     }
-
 }
-
