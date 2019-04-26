@@ -27,4 +27,15 @@ public class Promotion {
 	{ 
 		return new ArrayList<>(eleves);
 	}
+	
+	public Eleve rechercher(int id)
+    {
+        for (Eleve eleve : eleves)
+        {
+            if (equals(eleve) == true) {
+                return eleve;
+            }
+        }
+        return null;
+    }
 }
