@@ -61,7 +61,6 @@ public class Main {
         Florian.evaluations.add(new Evaluation(Florian, Durand,"Mathématiques", 11.75));
         Julien.evaluations.add(new Evaluation(Julien, Durand,"Mathématiques", 10.40));
 
-
         Gaston.evaluations.add(new Evaluation(Gaston, Soma,"Communication", 7.00));
         Hugo.evaluations.add(new Evaluation(Hugo, Soma,"Communication", 11.00));
         Killian.evaluations.add(new Evaluation(Killian, Soma,"Communication", 8.30));
@@ -102,8 +101,18 @@ public class Main {
         Julien.evaluations.add(new Evaluation(Julien, Collin,"Physique", 15.75));
 
 
-        System.out.println(Alice.toString());
+        //Affichage des caractéristiques de l'élève choisi
         System.out.println(Elodie.toString());
+
+        //Affichage des caractéristiques de l'élève recherché : ici l'élève 7
+        if (M1.rechercher(7) == null) {
+            System.out.println("\n\nL'élève ne se trouve pas dans la promotion 2020");
+            System.out.println(L3.rechercher(7).toString());
+        }
+        else {
+            System.out.println("\n\nL'élève se trouve pas dans la promotion 2020");
+            System.out.println(M1.rechercher(7).toString());
+        }
     }
 }
 
