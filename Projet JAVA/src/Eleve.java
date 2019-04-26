@@ -19,8 +19,8 @@ public class Eleve extends NomPrenom
 	public Eleve(String prenom, String nom, int jour, int mois, int annee)
 	{
 		super(prenom,nom);
-	    this.naissance = new Date(jour, mois, annee);
-        this.evaluations = new ArrayList<>();
+		this.naissance = new Date(jour, mois, annee);
+        	this.evaluations = new ArrayList<>();
 	}
 	//Accesseur pour l'identifiant
 	public int getId()
@@ -29,8 +29,8 @@ public class Eleve extends NomPrenom
 	}
 	public void setId(int id)
 	{
-		this.id = numero;
-		numero++;
+		this.id = Eleve.numero;
+		Eleve.numero++;
     }
 	
 	//Méthode pour créer des évaluations
@@ -110,13 +110,15 @@ public class Eleve extends NomPrenom
     }
 
     @Override
-    /*public boolean equals(Object obj) 
+    public boolean equals(Object obj) 
     {
         if (obj instanceof Eleve) {
-            return id.equals(((Eleve) obj).id);
+		if (id == ((Eleve) obj).id) {
+			return true;
+		}
         }
         return false;
-    }*/
+    }
 
 }
 
