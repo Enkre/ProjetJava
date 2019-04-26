@@ -104,6 +104,18 @@ public class Main {
         //Affichage des caractéristiques de l'élève choisi
         System.out.println(Elodie.toString());
 
+        //Affichage de tous les élèves d'une promotion
+        System.out.println("\n\nElèves de la promotion 2020 : ");
+        for (Object eleves: M1.getEleves()) {
+            System.out.println(eleves);
+        }
+
+        //Affichage de tous les élèves d'une promotion
+        System.out.println("\n\nElèves de la promotion 2021 : ");
+        for (Object eleves: L3.getEleves()) {
+            System.out.println(eleves);
+        }
+
         //Affichage des caractéristiques de l'élève recherché : ici l'élève 7
         if (M1.rechercher(7) == null) {
             System.out.println("\n\nL'élève ne se trouve pas dans la promotion 2020");
@@ -115,4 +127,3 @@ public class Main {
         }
     }
 }
-
