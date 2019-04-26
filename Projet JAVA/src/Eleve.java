@@ -75,14 +75,14 @@ public class Eleve extends NomPrenom
 	
 	//Méthode qui range dans une instance tous les professeurs correcteurs
 	public Set<Professeur>getCorrecteurs()
-	{
-		Set<Professeur> correcteurs = new HashSet<>();
-        for (Evaluation eval : evaluations) 
+    {
+        HashSet<Professeur> correcteurs = new HashSet<Professeur>();
+        for (Evaluation eval : evaluations)
         {
             correcteurs.add(eval.getProfesseur());
         }
         return correcteurs;
-	}
+    }
 	
 
     @Override // Décris un élève
