@@ -1,19 +1,24 @@
-public class Professeur extends NomPrenom{
+package NotesElevesProfesseurs;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-
+public class Professeur extends NomPrenom
+{
     // Constructeur d'initialisation
-   public Professeur(String prenom, String nom)
+    public Professeur(String prenom, String nom)
     {
         super(prenom,nom);
     }
-    
+
     //Méthode qui permet au professeur de rechercher un élève dans la promotion en fonction de son id
-    public Eleve rechercher(Promotion promotion, int id) 
+    public Eleve rechercher(Promotion promotion, int id)
     {
         return promotion.rechercher(id);
     }
-    
-    public void setNote(Promotion promotion, int id, double note, int indice) throws IllegalStateException
+
+    //Permet à un professeur de modifier une note
+    public void setNote(Promotion promotion, int id, double note, int indice, String matiere) throws IllegalStateException
     {
         Eleve eleve = rechercher(promotion, id);
         Evaluation eval = null;
@@ -25,7 +30,7 @@ public class Professeur extends NomPrenom{
             eval.setNote(note);
             eval.setProfesseur(this);
         } catch (IndexOutOfBoundsException error) {
-            //eval = new Evaluation(eleve, this, matiere, note);
+            eval = new Evaluation(eleve, this, matiere, note);
         }
     }
 
