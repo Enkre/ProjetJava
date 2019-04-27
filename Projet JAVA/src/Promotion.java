@@ -1,18 +1,21 @@
 package NotesElevesProfesseurs;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class Promotion {
+public class Promotion
+{
     private String nom;
     private List<Eleve> eleves;
 
     //Constructeur d'initialisation
-    public Promotion(String nom) {
+    public Promotion(String nom)
+    {
         this.nom = nom;
         this.eleves = new ArrayList<>();
     }
 
-    //Accesseur pour le nom
+    //Accesseur et mutateur pour le nom
     public String getNom()
     {
         return nom;
@@ -22,7 +25,7 @@ public class Promotion {
         this.nom = nom;
     }
 
-    public void add (Eleve eleve)
+    public void add(Eleve eleve)
     {
         eleves.add(eleve);
         eleve.setPromotion(this);
@@ -37,12 +40,17 @@ public class Promotion {
     //Méthode qui permet de rechercher un élève dans la promotion en fonction de son id
     public Eleve rechercher(int id)
     {
-        for (Eleve eleve : eleves)
+        for (Eleve eleves : eleves)
         {
-            if (eleve.equals(eleve) == true) {
-                return eleve;
+            if (eleves.getId() == id) {
+                return eleves;
             }
         }
         return null;
+    }
+
+    public void triEleve(int sens, int type)
+    {
+        Collections.sort(eleves, new Compare(sens, type));
     }
 }
