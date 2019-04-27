@@ -1,7 +1,4 @@
 package NotesElevesProfesseurs;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Professeur extends NomPrenom
 {
@@ -9,6 +6,12 @@ public class Professeur extends NomPrenom
     public Professeur(String prenom, String nom)
     {
         super(prenom,nom);
+    }
+
+    //Accesseur pour le nom du professeur
+    public String getNom()
+    {
+        return nom;
     }
 
     //Méthode qui permet au professeur de rechercher un élève dans la promotion en fonction de son id
@@ -25,11 +28,12 @@ public class Professeur extends NomPrenom
         if (eleve == null) {
             throw new IllegalStateException("Eleve inexistant dans la promotion !");
         }
-        try {
-            eval = eleve.getEvaluation().get(indice);
-            eval.setNote(note);
-            eval.setProfesseur(this);
-        } catch (IndexOutOfBoundsException error) {
+        if(indice >= 0) {
+            System.out.println("Modification de la note: ");
+            eleve.getEvaluation().get(indice).setNote(note);
+            System.out.println(eleve.getEvaluation().get(indice).getNote());
+        }
+        else {
             eval = new Evaluation(eleve, this, matiere, note);
         }
     }
