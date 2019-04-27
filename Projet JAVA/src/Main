@@ -66,13 +66,13 @@ public class Main {
         Killian.evaluations.add(new Evaluation(Killian, Soma,"Communication", 8.30));
         Lucie.evaluations.add(new Evaluation(Lucie, Soma,"Communication", 15.00));
         Morgane.evaluations.add(new Evaluation(Morgane, Soma,"Communication", 5.70));
-        Alice.evaluations.add(new Evaluation(Alice, Soma,"Communication", 16.00));
-        Bob.evaluations.add(new Evaluation(Bob, Soma,"Communication", 4.65));
+        Alice.evaluations.add(new Evaluation(Alice, Soma,"Communication", 12.00));
+        Bob.evaluations.add(new Evaluation(Bob, Soma,"Communication", 9.50));
         Casper.evaluations.add(new Evaluation(Casper, Soma,"Communication", 5.70));
         Donald.evaluations.add(new Evaluation(Donald, Soma,"Communication", 8.00));
         Elodie.evaluations.add(new Evaluation(Elodie, Soma,"Communication", 11.50));
         Florian.evaluations.add(new Evaluation(Florian, Soma,"Communication", 9.75));
-        Julien.evaluations.add(new Evaluation(Julien, Soma,"Communication", 10.40));
+        Julien.evaluations.add(new Evaluation(Julien, Soma,"Communication", 16.40));
 
         Gaston.evaluations.add(new Evaluation(Gaston, Nevro,"Informatique", 17.00));
         Hugo.evaluations.add(new Evaluation(Hugo, Nevro,"Informatique", 14.50));
@@ -89,9 +89,9 @@ public class Main {
 
         Gaston.evaluations.add(new Evaluation(Gaston, Collin,"Physique", 3.15));
         Hugo.evaluations.add(new Evaluation(Hugo, Collin,"Physique", 8.50));
-        Killian.evaluations.add(new Evaluation(Killian, Collin,"Physique", 14.30));
+        Killian.evaluations.add(new Evaluation(Killian, Collin,"Physique", 14.90));
         Lucie.evaluations.add(new Evaluation(Lucie, Collin,"Physique", 10.00));
-        Morgane.evaluations.add(new Evaluation(Morgane, Collin,"Physique", 12.70));
+        Morgane.evaluations.add(new Evaluation(Morgane, Collin,"Physique", 12.00));
         Alice.evaluations.add(new Evaluation(Alice, Collin,"Physique", 6.35));
         Bob.evaluations.add(new Evaluation(Bob, Collin,"Physique", 15.50));
         Casper.evaluations.add(new Evaluation(Casper, Collin,"Physique", 7.80));
@@ -107,13 +107,13 @@ public class Main {
         //Affichage de tous les élèves d'une promotion
         System.out.println("\n\nElèves de la promotion 2020 : ");
         for (Object eleves: M1.getEleves()) {
-            System.out.println(eleves);
+            System.out.println(eleves.toString());
         }
 
         //Affichage de tous les élèves d'une promotion
         System.out.println("\n\nElèves de la promotion 2021 : ");
         for (Object eleves: L3.getEleves()) {
-            System.out.println(eleves);
+            System.out.println(eleves.toString());
         }
 
         //Affichage des caractéristiques de l'élève recherché : ici l'élève 7
@@ -130,44 +130,44 @@ public class Main {
         System.out.println("\n\n\nTri croissant de la promotion 2020 en fonction de la moyenne");
         M1.triEleve(0, 0);
         for (Object eleves: M1.getEleves()) {
-            System.out.println(eleves);
+            System.out.println(eleves.toString());
         }
         System.out.println("\n\n\nTri croissant de la promotion 2020 en fonction de la mediane");
         M1.triEleve(0, 1);
         for (Object eleves: M1.getEleves()) {
-            System.out.println(eleves);
+            System.out.println(eleves.toString());
         }
         System.out.println("\n\n\nTri décroissant de la promotion 2020 en fonction de la moyenne");
         M1.triEleve(1, 0);
         for (Object eleves: M1.getEleves()) {
-            System.out.println(eleves);
+            System.out.println(eleves.toString());
         }
         System.out.println("\n\n\nTri décroissant de la promotion 2020 en fonction de la mediane");
         M1.triEleve(1, 1);
         for (Object eleves: M1.getEleves()) {
-            System.out.println(eleves);
+            System.out.println(eleves.toString());
         }
 
         //Affichage des élèves de la promotion 2021 par ordre croissant et décroissant en fonction de leur médiane et de leur moyenne
         System.out.println("\n\n\nTri croissant de la promotion 2021 en fonction de la moyenne");
         L3.triEleve(0, 0);
         for (Object eleves: L3.getEleves()) {
-            System.out.println(eleves);
+            System.out.println(eleves.toString());
         }
         System.out.println("\n\n\nTri croissant de la promotion 2021 en fonction de la mediane");
         L3.triEleve(0, 1);
         for (Object eleves: L3.getEleves()) {
-            System.out.println(eleves);
+            System.out.println(eleves.toString());
         }
         System.out.println("\n\n\nTri décroissant de la promotion 2021 en fonction de la moyenne");
         L3.triEleve(1, 0);
         for (Object eleves: L3.getEleves()) {
-            System.out.println(eleves);
+            System.out.println(eleves.toString());
         }
         System.out.println("\n\n\nTri décroissant de la promotion 2021 en fonction de la mediane");
         L3.triEleve(1, 1);
         for (Object eleves: L3.getEleves()) {
-            System.out.println(eleves);
+            System.out.println(eleves.toString());
         }
 
         //Changement de note par le professeur
@@ -177,10 +177,10 @@ public class Main {
             System.out.println(Elodie);
             Nevro.setNote(L3, 5, 15, indice, "Informatique");
             System.out.println("\nAprès modification : ");
-            System.out.println(Elodie);
+            System.out.println(Elodie.toString());
             Eleve eleve = Nevro.rechercher(L3, 5);
             System.out.println("\nAprès tri croissant des notes : ");
-            System.out.println(eleve);
+            System.out.println(eleve.toString());
         } catch(IllegalStateException e) {
             e.printStackTrace();
         }
