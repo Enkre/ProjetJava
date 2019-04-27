@@ -102,7 +102,7 @@ public class Main {
 
 
         //Affichage des caractéristiques de l'élève choisi
-        System.out.println(Elodie.toString());
+        System.out.println(Elodie);
 
         //Affichage de tous les élèves d'une promotion
         System.out.println("\n\nElèves de la promotion 2020 : ");
