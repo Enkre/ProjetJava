@@ -1,13 +1,14 @@
 package NotesElevesProfesseurs;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Collections;
-import java.util.*;
 
 public class Eleve extends NomPrenom
 {
-
     private int id;
-    private static int numero = 1;
+    private static int NUMERO = 1;
     private int jour;
     private int mois;
     private int annee;
@@ -31,8 +32,8 @@ public class Eleve extends NomPrenom
     }
     public void setId(int id)
     {
-        this.id = Eleve.numero;
-        Eleve.numero++;
+        this.id = Eleve.NUMERO;
+        Eleve.NUMERO++;
     }
 
     //Mutateur pour la promotion
@@ -41,7 +42,7 @@ public class Eleve extends NomPrenom
         this.promotion = promotion;
     }
 
-    //Méthode qui retourne la liste des évaluation
+    //Méthode qui retourne la liste des évaluations
     public List<Evaluation> getEvaluation()
     {
         return evaluations;
@@ -50,7 +51,7 @@ public class Eleve extends NomPrenom
     //Méthode qui permet de calculer la moyenne des évaluations
     public double moyenne() throws IllegalStateException
     {
-        int somme = 0;
+        double somme = 0.0;
         if (evaluations.isEmpty()) {
             throw new IllegalStateException("L'élève n'a aucune note !");
         }
@@ -70,14 +71,16 @@ public class Eleve extends NomPrenom
         int compteur = evaluations.size();
         if (evaluations.size()%2 == 0) {
             compteur = compteur/2;
+            double resultat = (evaluations.get(compteur - 1).getNote() + evaluations.get(compteur).getNote());
+            return resultat/2;
         }
         else {
-            compteur = ((compteur)/ 2) + 1;
+            compteur = ((compteur + 1)/ 2);
+            return evaluations.get(compteur - 1).getNote();
         }
-        return evaluations.get(compteur - 1).getNote();
     }
 
-    //Méthode qui range dans une instance tous les professeurs correcteurs
+    //Méthode qui range dans une instance de la classe HashSet tous les professeurs correcteurs
     public Set<Professeur>getCorrecteurs()
     {
         HashSet<Professeur> correcteurs = new HashSet<Professeur>();
@@ -88,7 +91,8 @@ public class Eleve extends NomPrenom
         return correcteurs;
     }
 
-    @Override // Décris un élève
+    //Méthode surchargée qui permet d'afficher les différentes caractéristiques de l'élève
+    @Override
     public String toString()
     {
         String ret = "";
@@ -114,7 +118,6 @@ public class Eleve extends NomPrenom
         return ret;
     }
 
-    //Hashcode et equals
     @Override
     public int hashCode() {
         int hash = 3 + id;
@@ -134,6 +137,7 @@ public class Eleve extends NomPrenom
         return false;
     }
 
+    //Méthode qui permet de comparer la moyenne entre deux objets
     public int CompareToMoyenne(Object obj)
     {
         assert obj instanceof Eleve : "L'objet donné en paramètre n'est pas de type Eleve !";
@@ -156,8 +160,8 @@ public class Eleve extends NomPrenom
         return 0;
     }
 
-    public int CompareToMediane(Object obj)
-    {
+    //Méthode qui permet de comparer la médiane entre deux objets
+    public int CompareToMediane(Object obj) {
         assert obj instanceof Eleve : "L'objet donné en paramètre n'est pas de type Eleve !";
         Eleve eleve = (Eleve) obj;
         try {
@@ -172,10 +176,23 @@ public class Eleve extends NomPrenom
             if (a < b) {
                 return -1;
             }
-        } catch(IllegalStateException e) {
+        } catch (IllegalStateException e) {
             System.out.println("L'élève n'a pas de notes !");
         }
         return 0;
     }
 
+    //Méthode qui permet de recherhcher la ième evaluation d'un élève
+    public int rechercherEvaluation(Professeur professeur, String matiere)
+    {
+        int indice, compteur = evaluations.size();
+        for (indice = 0; indice < compteur; indice ++)
+        {
+            Evaluation evaluation = evaluations.get(indice);
+            if (evaluation.has(professeur, matiere) == true) {
+                return indice;
+            }
+        }
+        return -1;
+    }
 }
