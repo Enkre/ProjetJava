@@ -1,10 +1,10 @@
 package Test;
 
 import NotesElevesProfesseurs.Eleve;
+import NotesElevesProfesseurs.IllegalStateException;
 import NotesElevesProfesseurs.Professeur;
 import NotesElevesProfesseurs.Promotion;
 import NotesElevesProfesseurs.Evaluation;
-import NotesElevesProfesseurs.Date;
 
 public class Main {
     public static void main(String[] args)
@@ -118,12 +118,71 @@ public class Main {
 
         //Affichage des caractéristiques de l'élève recherché : ici l'élève 7
         if (M1.rechercher(7) == null) {
-            System.out.println("\n\nL'élève ne se trouve pas dans la promotion 2020");
+            System.out.println("\n\nL'élève se trouve dans la promotion 2021");
             System.out.println(L3.rechercher(7).toString());
         }
         else {
-            System.out.println("\n\nL'élève se trouve pas dans la promotion 2020");
+            System.out.println("\n\nL'élève se trouve dans la promotion 2020");
             System.out.println(M1.rechercher(7).toString());
+        }
+
+        //Affichage des élèves de la promotion 2020 par ordre croissant et décroissant en fonction de leur médiane et de leur moyenne
+        System.out.println("\n\n\nTri croissant de la promotion 2020 en fonction de la moyenne");
+        M1.triEleve(0, 0);
+        for (Object eleves: M1.getEleves()) {
+            System.out.println(eleves);
+        }
+        System.out.println("\n\n\nTri croissant de la promotion 2020 en fonction de la mediane");
+        M1.triEleve(0, 1);
+        for (Object eleves: M1.getEleves()) {
+            System.out.println(eleves);
+        }
+        System.out.println("\n\n\nTri décroissant de la promotion 2020 en fonction de la moyenne");
+        M1.triEleve(1, 0);
+        for (Object eleves: M1.getEleves()) {
+            System.out.println(eleves);
+        }
+        System.out.println("\n\n\nTri décroissant de la promotion 2020 en fonction de la mediane");
+        M1.triEleve(1, 1);
+        for (Object eleves: M1.getEleves()) {
+            System.out.println(eleves);
+        }
+
+        //Affichage des élèves de la promotion 2021 par ordre croissant et décroissant en fonction de leur médiane et de leur moyenne
+        System.out.println("\n\n\nTri croissant de la promotion 2021 en fonction de la moyenne");
+        L3.triEleve(0, 0);
+        for (Object eleves: L3.getEleves()) {
+            System.out.println(eleves);
+        }
+        System.out.println("\n\n\nTri croissant de la promotion 2021 en fonction de la mediane");
+        L3.triEleve(0, 1);
+        for (Object eleves: L3.getEleves()) {
+            System.out.println(eleves);
+        }
+        System.out.println("\n\n\nTri décroissant de la promotion 2021 en fonction de la moyenne");
+        L3.triEleve(1, 0);
+        for (Object eleves: L3.getEleves()) {
+            System.out.println(eleves);
+        }
+        System.out.println("\n\n\nTri décroissant de la promotion 2021 en fonction de la mediane");
+        L3.triEleve(1, 1);
+        for (Object eleves: L3.getEleves()) {
+            System.out.println(eleves);
+        }
+
+        //Changement de note par le professeur
+        try {System.out.println("\n\nMr Nevro souhaite changer la note d'Elodie (id = 5)en informatique de la promotion 2021 : ");
+            int indice = Elodie.rechercherEvaluation(Nevro, "Informatique");
+            System.out.println("\nAvant modification : ");
+            System.out.println(Elodie);
+            Nevro.setNote(L3, 5, 15, indice, "Informatique");
+            System.out.println("\nAprès modification : ");
+            System.out.println(Elodie);
+            Eleve eleve = Nevro.rechercher(L3, 5);
+            System.out.println("\nAprès tri croissant des notes : ");
+            System.out.println(eleve);
+        } catch(IllegalStateException e) {
+            e.printStackTrace();
         }
     }
 }
