@@ -1,6 +1,5 @@
 package NotesElevesProfesseurs;
 
-import java.util.ArrayList;
 
 public class Evaluation implements Comparable {
 
@@ -18,18 +17,16 @@ public class Evaluation implements Comparable {
         this.note = note;
     }
 
-    //Méthode qui permet d'ajouter des évaluations en fonction du nombre max autorisé
-    public void addEvaluation()
+    //Méthode qui permet de tester si une évaluation correspond aux paramètres donnés
+    public boolean has(Professeur professeur, String matiere)
     {
-        if (eleve.evaluations.size() <= eleve.NB_EVALUATIONS) {
-            eleve.evaluations.add(this);
+        if (this.professeur.getNom() == professeur.getNom() && this.matiere == matiere) {
+            return true;
         }
-        else {
-            System.out.println("Le nombre maximum d'évaluation (" + eleve.NB_EVALUATIONS + ") par élève a été dépassé !");
-        }
+        return false;
     }
 
-    //Accesseurs en lecture et écriture
+    //Accesseurs et mutateurs
     public double getNote()
     {
         return note;
@@ -57,12 +54,13 @@ public class Evaluation implements Comparable {
         this.professeur = professeur;
     }
 
+    //Méthode qui permet de comparer deux objects en fonction de leur note
     @Override
     public int compareTo(Object obj)
     {
         Evaluation evaluation = (Evaluation)obj;
         double diff = this.note - evaluation.getNote();
-        /* For Ascending order*/
+
         if (diff < 0) {
             return -1;
         }
@@ -72,7 +70,8 @@ public class Evaluation implements Comparable {
         return 0;
     }
 
-    @Override // Décris un élève
+    //Méthode qui permet d'afficher l'évaluation d'un élève (matière, note, correcteur)
+    @Override
     public String toString()
     {
         return "(" + eleve.toString() + " " + professeur.toString() + " " + this.matiere + " " + this.note + ")";
