@@ -1,0 +1,34 @@
+package Test;
+
+import java.util.Collection;
+import NotesElevesProfesseurs.FilesCSV;
+import NotesElevesProfesseurs.Evaluation;
+import NotesElevesProfesseurs.Eleve;
+import NotesElevesProfesseurs.Professeur;
+
+public class CSV {
+
+    public static void main(String[] args) throws CloneNotSupportedException {
+
+        FilesCSV file = new FilesCSV();
+        String path = "/ressources/test.csv";
+        Collection<Professeur> professeurs = file.createProfesseur(path);
+        Collection<Eleve> eleves = file.createEleve(path);
+        Collection<Evaluation> evaluations = file.createEvaluation(path, eleves, professeurs);
+
+        for(Eleve e : eleves) {
+            for (int i = 0; i < evaluations.size(); i++)
+            {
+                e.getEvaluation().add(new Evaluation((Evaluation) evaluations.toArray()[i]));
+            }
+        }
+        for(Eleve e : eleves)
+        {
+            System.out.println(e);
+        }
+        for(Professeur p : professeurs)
+        {
+            System.out.println(p);
+        }
+    }
+}
