@@ -1,0 +1,111 @@
+package NotesElevesProfesseurs;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class FilesCSV
+{
+    BufferedReader buffer;
+    InputStreamReader trad;
+
+    public Collection<Professeur> createProfesseur(String path)
+    {
+        Collection<Professeur> professeur = new ArrayList<>();
+        try {
+            System.out.println(path);
+            trad = new InputStreamReader(getClass().getResourceAsStream(path));
+            buffer = new BufferedReader(trad);
+            String ligne;
+            while (((ligne = buffer.readLine()) != null))
+            {
+                String[] data = ligne.split(";");
+                if ("Professeur".equals(data[0])){
+                    professeur.add(new Professeur(data[1], data[2]));
+                }
+                else {
+                    System.out.println(data[0]);
+                }
+            }
+            buffer.close();
+        }
+        catch (FileNotFoundException e){
+            System.out.println("Le fichier n'a pas été trouvé !");
+        }
+        catch (IOException e){
+            System.out.println("Erreur IO");
+        }
+        return professeur;
+    }
+
+    public Collection<Eleve> createEleve(String path)
+    {
+        Collection<Eleve> eleve = new ArrayList<>();
+        try {
+            System.out.println(path);
+            trad = new InputStreamReader(getClass().getResourceAsStream(path));
+            buffer = new BufferedReader(trad);
+            String ligne;
+            while (((ligne = buffer.readLine()) != null))
+            {
+                String[] data = ligne.split(";");
+                if ("Eleve".equals(data[0])){
+                    eleve.add(new Eleve(data[1], data[2], Integer.parseInt(data[3]), Integer.parseInt(data[4]), Integer.parseInt(data[5])));
+                }
+                else {
+                    System.out.println(data[0]);
+                }
+            }
+            buffer.close();
+        }
+        catch (FileNotFoundException e){
+            System.out.println("Le fichier n'a pas été trouvé !");
+        }
+        catch (IOException e){
+            System.out.println("Erreur IO");
+        }
+        return eleve;
+    }
+
+    public Collection<Evaluation> createEvaluation(String path, Collection<Eleve> eleve, Collection<Professeur> professeur)
+    {
+        Collection<Evaluation> evaluation = new ArrayList<>();
+        try {
+            System.out.println(path);
+            trad = new InputStreamReader(getClass().getResourceAsStream(path));
+            buffer = new BufferedReader(trad);
+            String ligne;
+            while (((ligne = buffer.readLine()) != null))
+            {
+                String[] data = ligne.split(";");
+                if ("Evaluation".equals(data[0])) {
+                    for (Eleve e : eleve)
+                    {
+                        if (e.getId() == (Integer.parseInt(data[3]))) {
+                            for (Professeur p : professeur)
+                            {
+                                if (p.get() == (Integer.parseInt(data[4]))){
+                                    evaluation.add(new Evaluation(data[1], Integer.parseInt(data[2]), e, p));
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    System.out.println(data[0]);
+                }
+            }
+            buffer.close();
+        }
+        catch (FileNotFoundException e){
+            System.out.println("File not found");
+        }
+        catch (IOException e){
+            System.out.println("I/O error");
+        }
+        return evaluation;
+    }
+}
